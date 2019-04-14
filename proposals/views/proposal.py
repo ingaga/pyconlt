@@ -30,7 +30,14 @@ class ProposalReviewView(View):
         proposal = get_object_or_404(Proposal, pk=proposal_id)
         reviews = Review.objects.filter(proposal=proposal_id)
 
-        context = {"proposal": proposal, "reviews": reviews}
+        try:
+            status = Review.objects.get(
+                author=request.user,
+                proposal_id=proposal_id).status
+        except:
+            status = 0
+
+        context = {"proposal": proposal, "reviews": reviews, "status": status}
 
         return render(request, self.template, context)
 

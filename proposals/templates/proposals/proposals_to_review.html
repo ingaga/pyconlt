@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block content %}
-    <h4 align="center">{% trans "List of Proposals" %}</h4>
+    <h4 align="center">{% trans "List of Proposals" %} ({{ proposals|length }})</h4>
     <table>
         <thead>
             <tr>
@@ -64,8 +64,7 @@
                             {{ proposal.get_review_rating }}
                         </td>
                         <td>
-                            <!-- <a href="/proposals/{{ proposal.pk }}/proposal/" class="btn">Review</a> -->
-                            <a href="{% url 'review_view' proposal.pk %}" class="btn">Review</a>
+                            <a href="{% url 'view_reviews' proposal.pk %}" class="btn">Review</a>
                         </td>
                     </tr>
                 {% endfor %}

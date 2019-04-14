@@ -14,8 +14,11 @@
 {% block content %}
     {% if user.is_authenticated %}
     <div>
-      <p>This is review for: <b>{{proposal.title}}</b> proposal<br  />
-      Short description: {{proposal.short_description|safe}}</p>
+      <p>{% trans 'This is review for:' %}<b>{{proposal.title}}</b> proposal<br  />
+      {% trans 'Short description:' %} {{proposal.short_description|safe}}<br />
+      {% trans 'Attachments:' %} {{ proposal.attachment }}<br />
+      {% trans 'Proposal type:' %} {{ proposal.type }} <br />
+    </p>
     </div>
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
